@@ -2,6 +2,7 @@
     --nike-black: #111111;
     --nike-white: #ffffff;
     --nike-gray: #f5f5f5;
+    --nike-red: #e4002b;
 }
 
 body {
@@ -42,6 +43,16 @@ body {
     height: auto;
     transform: translateX(-50%) translateY(-50%);
     z-index: -1;
+    animation: zoomInOut 20s infinite alternate ease-in-out;
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-50%) scale(1.1);
+    }
 }
 
 .overlay-video {
@@ -70,11 +81,52 @@ body {
 
 .tarjeta-producto {
     border: none;
+    transition: all 0.5s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.tarjeta-producto .card-img-top {
+    transition: transform 0.5s ease;
+}
+
+.tarjeta-producto:hover .card-img-top {
+    transform: scale(1.1);
 }
 
 .contenedor-imagen {
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contenedor-imagen:nth-child(1) { animation-delay: 0.1s; }
+.contenedor-imagen:nth-child(2) { animation-delay: 0.2s; }
+.contenedor-imagen:nth-child(3) { animation-delay: 0.3s; }
+
+.contenedor-imagen img {
+    transition: transform 0.5s ease;
+}
+
+.contenedor-imagen:hover img {
+    transform: scale(1.1);
 }
 
 .overlay-imagen {
@@ -89,6 +141,22 @@ body {
     justify-content: center;
     align-items: center;
     opacity: 0;
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+}
+
+.contenedor-imagen:hover .overlay-imagen {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.overlay-imagen h4 {
+    transform: translateY(30px);
+    transition: transform 0.5s ease 0.2s;
+}
+
+.contenedor-imagen:hover .overlay-imagen h4 {
+    transform: translateY(0);
 }
 
 .pie-pagina {
